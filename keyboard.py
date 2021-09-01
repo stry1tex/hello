@@ -9,7 +9,8 @@ categories1 = types.InlineKeyboardMarkup()
   
 categoriya2 = types.InlineKeyboardButton(text = '🦄 Категории', callback_data = 'buy')
 categoriya3 = types.InlineKeyboardButton(text = '📣 Помощь', callback_data = 'categoriya2')
-categories1.add(categoriya2, categoriya3)
+categoriya4 = types.InlineKeyboardButton(text = '💭 Отзывы', callback_data = 'categoriya3')
+categories1.add(categoriya2, categoriya3, categoriya4)
 
 
 
