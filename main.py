@@ -11,25 +11,31 @@ bot = telebot.TeleBot(config.TOKEN)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    markup_inline = types.InlineKeyboardMarkup()
-    tovar1 = types.InlineKeyboardButton(text = '🍪 14-17 лет ', callback_data = 't1')
-    tovar2 = types.InlineKeyboardButton(text = '🍇 Студентки ', callback_data = 't2')
-    tovar3 = types.InlineKeyboardButton(text = '🍓 Вписка ', callback_data = 't3')
-    tovar4 = types.InlineKeyboardButton(text = '🍑 В школе ', callback_data = 't4')
-    tovar5 = types.InlineKeyboardButton(text = '🍒 Учитель и школьница ', callback_data = 't5')
-    tovar6 = types.InlineKeyboardButton(text = '🐱 Милфы ', callback_data = 't6')    
-    tovar7 = types.InlineKeyboardButton(text = '📣 Помощь', callback_data = 't7')
 
-    markup_inline.add(tovar1, tovar5, tovar4, tovar3,tovar2, tovar6, tovar7)
 
     photo = open("welcome/hello.jpg", 'rb')
-    bot.send_photo(message.chat.id, photo, caption='🔥 <b>Добро пожаловать в наш магазин, ты попал по адресу!</b>\n\n<i>💞 Спасибо, что используешь нашего бота!</i>\n👇 <i>Что-бы использовать бота, используй кнопки снизу.</i>', reply_markup = markup_inline, parse_mode = 'html')
+    bot.send_photo(message.chat.id, photo, caption='🔥 <b>Добро пожаловать в наш магазин, ты попал по адресу!</b>\n\n<i>💞 Спасибо, что используешь нашего бота!</i>\n👇 <i>Что-бы использовать бота, используй кнопки снизу.</i>', reply_markup = keyboard.categories, parse_mode = 'html')
  
+
+
+
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
+
+
+        if call.data == 'categoriya3':
+            bot.send_message(call.message.chat.id, '☑️ Наша группа с отзывами - https://t.me/joinchat/4Gg5llNJCM44YTg6', parse_mode='html')
+
+
+        if call.data == 'buy':
+            bot.send_message(call.message.chat.id, '<b>Выберите интересующий вас товар:</b>', reply_markup=keyboard.markup_inline1, parse_mode='html')
+
+
+
         if call.data == 't1':
             markup_inline = types.InlineKeyboardMarkup()
             variant1 = types.InlineKeyboardButton(text = '✅ Я оплатил', callback_data = 'oplata')
@@ -42,7 +48,7 @@ def callback_inline(call):
 
 
         if call.data == 'back':
-            bot.send_message(call.message.chat.id, '❗️ Вы вернулись назад!\n\n🔥 <b>Добро пожаловать в наш магазин, ты попал по адресу!</b>\n\n<i>💞 Спасибо, что используешь нашего бота!</i>\n👇 <i>Что-бы использовать бота, используй кнопки снизу.</i>', reply_markup=keyboard.startmarkup, parse_mode='html')
+            bot.send_message(call.message.chat.id, '❗️ Вы вернулись назад!\n\n🔥 <b>Добро пожаловать в наш магазин, ты попал по адресу!</b>\n\n<i>💞 Спасибо, что используешь нашего бота!</i>\n👇 <i>Что-бы использовать бота, используй кнопки снизу.</i>', reply_markup=keyboard.categories1, parse_mode='html')
 
 
 
@@ -90,7 +96,7 @@ def callback_inline(call):
             idd = call.message.from_user.id
             bot.send_message(call.message.chat.id, f'➖➖➖➖➖➖➖➖➖➖\n<b>Вы выбрали:</b>🍒 <i>Учитель и школьница(по настоящему)\n<b>Описание:</b> <i>2 видео. Длительность 5-10 минут, только минет.</i></i>\n➖➖➖➖➖➖➖➖➖➖\n🥝 <b>Оплата через QIWI:</b>\n<b>❗️ Цена:</b> <i>99₽</i>\n<b>💰 QIWI кошелёк для оплаты:</b> <i>+79504828616</i>\n<b>💭 Комментарий к переводу:</b> <i>{idd}</i>\n\n➖➖➖➖➖➖➖➖➖➖\n\n<b>💳 Оплата картой:</b>\n\n<b>Номер карты для перевода:</b> <i>4890 4947 1153 6177</i>\n<code>[Переводить ровно указанную сумму, комиссия никак не повлияет!]</code>', reply_markup=markup_inline, parse_mode='html')
 
-        if call.data == 't7':
+        if call.data == 'categoriya2':
             markup_inline = types.InlineKeyboardMarkup() 
             variant1 = types.InlineKeyboardButton(text = '✅ Оператор', url = 'https://t.me/LoliSh0p')            
             variant2 = types.InlineKeyboardButton(text = '🔙 В главное меню', callback_data = 'back')
